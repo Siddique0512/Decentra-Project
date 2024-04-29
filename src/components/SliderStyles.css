@@ -16,7 +16,7 @@
     transform: translateY(-50%);
     z-index: 1;
     color: #fff;
-    font-size: 36px; /* Double the font size for larger arrows */
+    font-size: 50px; /* Double the font size for larger arrows */
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
