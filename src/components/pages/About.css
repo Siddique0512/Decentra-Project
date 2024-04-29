@@ -1,0 +1,59 @@
+.about-section {
+    padding: 3rem 0;
+  }
+  
+  .about-heading {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .about-text {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  
+  .custom-slider-container {
+    margin-top: 2rem;
+  }
+  
+  .about-card {
+    background-color: rgb(35, 47, 62);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .about-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #000;
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    margin: 0 auto 1rem;
+  }
+  
+  .icon {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    color: #fff;
+  }

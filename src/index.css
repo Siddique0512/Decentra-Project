@@ -1,9 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.slider-container {
+  width: 100%;
+  max-width: 800px;
+  /* Adjust maximum width as needed */
+  margin: 0 auto;
+}
+
+.slick-slide img {
+  width: 100%;
+  height: 300px;
+  /* Adjust height as needed */
+  object-fit: cover;
+}
+
+.slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+
+  &.prev-arrow {
+    left: 10px;
+  }
+
+  &.next-arrow {
+    right: 10px;
+  }
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+
+  li {
+    margin: 0 5px;
+    display: inline-block;
+
+    button {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &.slick-active {
+        background-color: #333;
+      }
+    }
+  }
 }
 
 :root {
@@ -14,6 +80,10 @@
   --clr-ebony-clay: #232f3e;
   --clr-orange: #FF9900;
   --clr-orange-dark: #cc8111;
+}
+
+.text-orange {
+  color: orange;
 }
 
 body {
@@ -41,7 +111,6 @@ nav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
-
   background-color: var(--clr-bunker);
 }
 
@@ -51,13 +120,22 @@ nav {
   align-items: center;
 }
 
+.nav__brand a {
+  text-decoration: none;
+  /* Remove default underline */
+  color: inherit;
+  /* Inherit color from parent */
+  cursor: pointer;
+  /* Change cursor to pointer on hover */
+}
+
 .nav__brand img {
   max-width: 125px;
   height: auto;
 }
 
 .nav__brand h1 {
-  color: var(--clr-white);
+  color: white;
   font-family: "Lalezar";
   font-size: 2.5em;
 }
@@ -71,12 +149,12 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-
   list-style: none;
 }
 
 .nav__links li {
   margin: 0 15px;
+  justify-content: space-between;
 }
 
 .nav__links li a {
@@ -85,26 +163,22 @@ nav {
 }
 
 .nav__links li a:hover {
-  color: var(--clr-orange);
+  color: orange;
 }
 
-.nav__search {
-  padding: 10px;
-  border-radius: 6px;
-  min-width: 50%;
-}
+.nav__view {
+  width: 150px;
+  color: rgb(255, 255, 255);
+  margin: auto;
 
-.nav__search:hover {
-  outline: 1px solid var(--clr-orange);
 }
-
 .nav__connect {
   width: 150px;
   height: 40px;
   margin: 0 auto;
 
-  background-color: var(--clr-orange);
-  color: var(--clr-black);
+  background-color: whitesmoke;
+  color: black;
 
   border: none;
   border-radius: 4px;
@@ -118,9 +192,44 @@ nav {
 }
 
 .nav__connect:hover {
-  background-color: var(--clr-orange-dark);
+  background-color: orange;
 }
 
+.nav__disconnect {
+  width: 150px;
+  height: 40px;
+  margin-left: 20px;
+
+  background-color: whitesmoke;
+  color: black;
+
+  border: none;
+  border-radius: 4px;
+
+  font-family: "Lalezar";
+  font-size: 1.25em;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 250ms ease;
+}
+
+.nav__disconnect:hover {
+  background-color: orange;
+}
+
+.nav__user {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Adjust as needed */
+}
+
+.nav__welcome {
+  margin-right: 10px; /* Adjust as needed */
+}
+.white-text {
+  color: white;
+}
 /* ------------------------------------------------------ */
 /* -- CARDS -- */
 
@@ -187,7 +296,9 @@ nav {
 }
 
 .card__info .rating {
-  color: yellow;
+  display: flex;
+  align-items: center;
+  /* Align items horizontally */
   margin: 5px 0;
 }
 
@@ -228,7 +339,12 @@ nav {
   transform: translate(-50%, -50%);
   z-index: 2;
 
-  background: var(--clr-white);
+  background: linear-gradient(to bottom, #4a90e2, #ffffff);
+
+
+
+
+
 }
 
 .product__image {
@@ -267,7 +383,10 @@ nav {
 .product__overview h2,
 .product__overview hr,
 .product__overview .rating {
-  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  /* Align items horizontally */
+  margin: 5px 0;
 }
 
 .product__overview ul {
@@ -292,8 +411,8 @@ nav {
   height: 40px;
   margin: 20px 0;
 
-  background-color: var(--clr-orange);
-  color: var(--clr-black);
+  background-color: black;
+  color: whitesmoke;
 
   border: none;
   border-radius: 24px;
@@ -307,7 +426,8 @@ nav {
 }
 
 .product__buy:hover {
-  background-color: var(--clr-orange-dark);
+  background-color: yellow;
+  color: black;
 }
 
 .product__bought {
@@ -352,4 +472,373 @@ nav {
   .product__image {
     grid-column: span 2;
   }
+}
+
+.brand-section-slider {
+  margin-top: 3.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.brand-section-slider .slide {
+  flex: 1;
+  max-width: 150px;
+  /* Adjust the max-width to make the images smaller */
+  text-align: center;
+}
+
+.brand-section-slider img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  /* Add border-radius for rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Add a subtle shadow */
+  transition: transform 0.3s ease;
+  /* Add a smooth transition on hover */
+}
+
+.brand-section-slider img:hover {
+  transform: scale(1.05);
+  /* Scale up the image on hover for a subtle effect */
+}
+
+.card__info .rating {
+  display: flex;
+  align-items: center;
+  /* Align items horizontally */
+  margin: 5px 0;
+}
+
+.card__info .rating svg {
+  margin-right: 5px;
+  /* Add margin between the stars */
+}
+
+.contact-container {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-form-container {
+  max-width: 500px;
+  width: 100%;
+}
+
+.contact-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-inputs input,
+.contact-inputs textarea {
+  width: calc(50% - 10px);
+  /* Half the width with 10px space between */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.contact-inputs input[type="submit"] {
+  background-color: #1a365d;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.contact-inputs input[type="submit"]:hover {
+  background-color: #1e40af;
+}
+
+.iframe-container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.nav__auth-buttons {
+  display: flex;
+  justify-content: center; /* Center items horizontally */
+  gap: 1rem; /* Space between buttons */
+}
+
+.nav__login-button,
+.nav__signup-button {
+  width: 100px;
+  height: 40px;
+  background-color: whitesmoke;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  font-family: "Lalezar";
+  font-size: 1.25em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 250ms ease;
+}
+
+.nav__login-button:hover,
+.nav__signup-button:hover {
+  background-color: orange;
+}
+
+.nav__search {
+  padding: 10px;
+  border-radius: 6px;
+  min-width: 75%;
+  margin-right: 1rem;
+  /* Add space to the right */
+}
+
+.nav__search:hover {
+  outline: 1px solid var(--clr-black);
+}
+
+.nav__login-button,
+.nav__signup-button {
+  margin-left: 1rem;
+  /* Add space to the left */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #0a0a0a;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: rgb(253, 10, 10);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #0b0b0b;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.arrow {
+  margin-left: 5px;
+}
+
+.center-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+}
+
+.contact-form label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.contact-form button {
+  padding: 0.5rem 1rem;
+  background-color: orange;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #232f3e;
+  color: white;
+}
+
+.custom-slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* Adjust height as needed */
+  object-fit: cover;
+  
+}
+
+.custom-slider-container .slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  max-width: 800px;
+  /* Set max width as needed */
+  width: 100%;
+  
+}
+
+.custom-slider-container .slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  
+}
+
+.custom-slider-container .slick-list:focus {
+  outline: none;
+}
+
+.custom-slider-container .slick-list.dragging {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.custom-slider-container .slick-track {
+  position: relative;
+  left: 0;
+  top: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.custom-slider-container .slick-slide {
+  display: none;
+  float: left;
+  height: 50%;
+  min-height: 1px;
+}
+
+.custom-slider-container .slick-slide img {
+  max-width: 100%;
+  height: 500px;
+  object-fit: cover;
+
+}
+
+.custom-slider-container .slick-dots {
+  position: absolute;
+  bottom: 10px;
+  /* Adjust the position from the bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-slider-container .slick-dots li {
+  margin: 0 5px;
+  /* Adjust the spacing between dots */
+}
+
+.custom-slider-container .slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.5);
+  /* Dot background color */
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.custom-slider-container .slick-dots li button:hover,
+.custom-slider-container .slick-dots li.slick-active button {
+  background: white;
+  /* Active dot color */
+}
+
+.our-product {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  color: #001f3f;
+  /* Dark blue color */
+  transition: color 0.3s ease;
+  /* CSS transition for color change */
+}
+
+.our-product:hover {
+  color: orange;
+  /* Change color on hover (example color) */
+}
+/* Style the slider navigation buttons */
+.slick-prev,
+.slick-next {
+  width: 40px; /* Set the width of the buttons */
+  height: 40px; /* Set the height of the buttons */
+  background-color: #ffffff; /* Set the background color */
+  border-radius: 50%; /* Make the buttons circular */
+  border: 1px solid #cccccc; /* Add a border to the buttons */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s ease; /* Add transition for smooth color change */
+}
+
+/* Style the arrow icon in the buttons */
+.slick-prev::before,
+.slick-next::before {
+  content: ''; /* Ensure content is empty for pseudo-elements */
+  display: inline-block; /* Make the arrow icon inline */
+  width: 10px; /* Set the width of the arrow */
+  height: 10px; /* Set the height of the arrow */
+  border-top: 2px solid #000000; /* Style the arrow with border */
+  border-right: 2px solid #000000; /* Style the arrow with border */
+  transform: rotate(-45deg); /* Rotate the arrow icon */
+}
+
+/* Change arrow color on hover */
+.slick-prev:hover,
+.slick-next:hover {
+  background-color: #e0e0e0; /* Change background color on hover */
 }
