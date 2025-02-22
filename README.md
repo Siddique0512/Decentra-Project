@@ -1,4 +1,4 @@
-# Dappazon
+# Decentra
 
 ## Technology Stack & Tools
 
